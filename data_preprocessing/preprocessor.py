@@ -5,10 +5,11 @@ class Preprocessor:
     This is the base Preprocessor class that will be using for 
     any data preprocessing required
     """
-    def __init__(self):
-        pass
+    def __init__(self,filename):
+        self.df = pd.read_csv(filename + '.csv',header=None)
+
     
-    def add_columns(self,filename,inference=0):
+    def add_columns(self,inference=0):
         """
         This method adds columns to the data fetched via the REST API
 
@@ -74,8 +75,22 @@ class Preprocessor:
                          ' ERC20_most_rec_token_type']
 
         # Read file,assign cols
-        df = pd.read_csv(filepath + '.csv',header=None)
-        df.columns = cols
-        # Drop the FLAG column before sending returning value
-        return df.drop('FLAG',axis=1)
+        self.df.columns = cols
+
+    def remove_features(self):
+        """
+        This method removes unnecessary features
+
+        Returns:
+        
+        df = a DataFrame without unneeded features
+        """
+        # Remove unnecessary fields
+        self.df.pop('Index')
+        self.df.pop('Address')
+        self.df.pop('ERC20_most_sent_token_type')
+        self.df.pop('ERC20_most_rec_token_type')
+        self.df.pop('ERC20_uniq_sent_token_name')
+        self.df.pop('ERC20_uniq_rec_token_name')
+        return self.df
 
