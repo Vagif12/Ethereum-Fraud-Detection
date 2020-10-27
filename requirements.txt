@@ -1,0 +1,8 @@
+csv
+numpy
+pandas
+tqdm
+requests
+string
+statistics
+
