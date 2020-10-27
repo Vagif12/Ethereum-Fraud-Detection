@@ -1,10 +1,27 @@
 import pandas as pd
 
 class Preprocessor:
+    """
+    This is the base Preprocessor class that will be using for 
+    any data preprocessing required
+    """
     def __init__(self):
         pass
     
-    def add_columns(self,filepath):
+    def add_columns(self,filename,inference=0):
+        """
+        This method adds columns to the data fetched via the REST API
+
+        Parameters:
+
+        filename = the name of the file, without the .csv extension
+
+        Returns:
+
+        df = A DataFrame of the dataset with columns
+
+        """
+        # Define list of columns
         cols = ['Index',
                          'Address',
                          'FLAG',
@@ -55,6 +72,10 @@ class Preprocessor:
                          ' ERC20 uniq rec token name',
                          ' ERC20 most sent token type',
                          ' ERC20_most_rec_token_type']
+
+        # Read file,assign cols
         df = pd.read_csv(filepath + '.csv',header=None)
         df.columns = cols
-        return df
+        # Drop the FLAG column before sending returning value
+        return df.drop('FLAG',axis=1)
+
