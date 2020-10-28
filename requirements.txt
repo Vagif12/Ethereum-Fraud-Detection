@@ -5,4 +5,6 @@ tqdm
 requests
 string
 statistics
-
+sklearn
+xgboost
+lightgbm
