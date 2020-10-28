@@ -7,4 +7,5 @@ string
 statistics
 sklearn
 xgboost
-lightgbm
+scipy
+
