@@ -33,7 +33,7 @@ class FraudDetector:
         self.X,self.y = self.df_dropped.drop('FLAG',axis=1),self.df_dropped['FLAG']
         
     def split_data(self):
-        for train_index,test_index in skf.split(self.X,self.y):
+        for train_index,test_index in self.skf.split(self.X,self.y):
             self.X_train,self.X_test = self.X.iloc[train_index],self.X.iloc[test_index],
             self.y_train,self.y_test = self.y.iloc[train_index],self.y.iloc[test_index]
             
