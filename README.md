@@ -41,4 +41,5 @@ The data obtaining process is done as follows:
 The `preprocessor.py` file located in the [data_preprocesing](https://github.com/Vagif12/Ethereum-Fraud-Detection/blob/master/data_preprocessing) folder contains the main Preprocessor class, which has the following methods:
 
 1. `remove_features`: a method to remove unneeded features
-2. `transform_data`: a method that applies box-cox transformations on given data
+2. `drop_duplicates`: a method that drops duplicate rows
+3. `clean`: the main method that calls all these preprocessing steps
