@@ -43,3 +43,17 @@ The `preprocessor.py` file located in the [data_preprocesing](https://github.com
 1. `remove_features`: a method to remove unneeded features
 2. `drop_duplicates`: a method that drops duplicate rows
 3. `clean`: the main method that calls all these preprocessing steps
+
+## EDA
+
+the purpose of this notebook is to gain a better understanding of the data. The following questions are going to be asked:
+
+Q1. Do we have any missing values?
+
+Q2. Is the data balanced?
+
+Q3. Is the data skewed?
+
+Q4. What feature values often belong to fraud accounts?
+
+Q5: Are there any potential measures we can take to reduce the chance of a data leakage?
