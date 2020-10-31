@@ -15,7 +15,7 @@ Given the address of an account, we are trying to predict the probability of tha
 I used classification metrics, primarily the f1-score,preicision and recall, as the data is imbalanced, thus accuracy would produce
 an overly positive outcome.
 
-## Data Gathering
+## Data Collection
 The `collector.py` file in the [data_collection](https://github.com/Vagif12/Ethereum-Fraud-Detection/blob/master/data_collection/collector.py) folder
 cotains a DataCollector class, which can be used to obtain the data. 
 
@@ -34,7 +34,7 @@ The data obtaining process is done as follows:
 2. For each address, several features are obtained via the [Etherscan API](https://etherscan.io/apis)
 3. The output is outputted to a CSV file
 
-### **NOTE**: This data collection process can take some time. Therefore, I have created the [final dataset](https://github.com/Vagif12/Ethereum-Fraud-Detection/blob/master/datasets/final_combined_dataset.csv) for ease of access.
+**NOTE**: This data collection process can take some time. Therefore, I have created the [final dataset](https://github.com/Vagif12/Ethereum-Fraud-Detection/blob/master/datasets/final_combined_dataset.csv) for ease of access.
 
 
 ## Data Preprocessing
