@@ -404,7 +404,7 @@ class DataCollector:
         return timeDifference
 
     def min_max_avg(self,value_array_tnxs):
-                """
+        """
         This function calculates the minimum and maximum average time from the transactions
 
         Parameters:
