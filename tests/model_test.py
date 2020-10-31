@@ -6,7 +6,7 @@ import pandas as pd
 
 from modelling.model import FraudDetector
 
-df = pd.read_csv('../datasets/final_combined_dataset.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/Vagif12/Ethereum-Fraud-Detection/master/datasets/final_combined_dataset.csv')
 
 class TestQueries(unittest.TestCase):
 
