@@ -48,12 +48,12 @@ The `preprocessor.py` file located in the [data_preprocesing](https://github.com
 
 the purpose of this notebook is to gain a better understanding of the data. The following questions are going to be asked:
 
-Q1. Do we have any missing values?
+**Q1**. Do we have any missing values?
 
-Q2. Is the data balanced?
+**Q2**. Is the data balanced?
 
-Q3. Is the data skewed?
+**Q3**. Is the data skewed?
 
-Q4. What feature values often belong to fraud accounts?
+**Q4**. What feature values often belong to fraud accounts?
 
-Q5: Are there any potential measures we can take to reduce the chance of a data leakage?
+**Q5**: Are there any potential measures we can take to reduce the chance of a data leakage?
