@@ -5,9 +5,12 @@ class Preprocessor:
     This is the base Preprocessor class that will be using for 
     any data preprocessing required
     """
-    def __init__(self,filename):
-        self.df = pd.read_csv(filename + '.csv',header=None)
+    def __init__(self,df):
+        self.df = df
 
+    def clean(self):
+        self.remove_features()
+        self.drop_duplicates()
     
     def add_columns(self,inference=0):
         """
@@ -45,7 +48,7 @@ class Preprocessor:
                          'avg value sent to contract',
                          'total transactions (including tnx to create contract',
                          'total Ether sent',
-                         'total ether received',
+                        #  'total ether received',
                          'total ether sent contracts',
                          'total ether balance',
                          ' Total ERC20 tnxs',
@@ -65,7 +68,7 @@ class Preprocessor:
                          ' ERC20 avg val rec',
                          ' ERC20 min val sent',
                          ' ERC20 max val sent',
-                         ' ERC20 avg val sent',
+                        #  ' ERC20 avg val sent',
                          ' ERC20 min val sent contract',
                          ' ERC20 max val sent contract',
                          ' ERC20 avg val sent contract',
@@ -77,7 +80,7 @@ class Preprocessor:
         # Read file,assign cols
         self.df.columns = cols
 
-    def remove_features(self):
+    def remove_features(self,inference=False):
         """
         This method removes unnecessary features
 
@@ -86,11 +89,9 @@ class Preprocessor:
         df = a DataFrame without unneeded features
         """
         # Remove unnecessary fields
-        self.df.pop('Index')
-        self.df.pop('Address')
-        self.df.pop('ERC20_most_sent_token_type')
-        self.df.pop('ERC20_most_rec_token_type')
-        self.df.pop('ERC20_uniq_sent_token_name')
-        self.df.pop('ERC20_uniq_rec_token_name')
-        return self.df
-
+        self.df.drop(['Index','Address', ' ERC20 uniq sent token name',
+ ' ERC20 uniq rec token name',
+ ' ERC20 most sent token type',
+ ' ERC20_most_rec_token_type',' ERC20 min val sent contract',' ERC20 max val sent contract',' ERC20 avg val sent contract','min value sent to contract','max val sent to contract','avg value sent to contract',' ERC20 avg time between sent tnx',' ERC20 avg time between rec tnx',' ERC20 avg time between rec 2 tnx','total ether sent contracts',' ERC20 avg time between contract tnx',' ERC20 total Ether sent contract',' ERC20 uniq sent addr.1'],axis=1,inplace=True)
+    def drop_duplicates(self):
+        self.df.drop_duplicates(inplace=True)
