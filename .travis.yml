@@ -1,0 +1,10 @@
+language: python
+python:
+- "3.6"
+- "3.7"
+
+install:
+- pip3 insall -r requirements.txt
+
+scripts:
+- python3 -m unittest discover ehtereum_fraud_detection/tests "model_test.py"

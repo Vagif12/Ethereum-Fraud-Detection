@@ -9,4 +9,5 @@ sklearn
 xgboost
 matplotlib
 seaborn
-pandas-profiling==2.9.0
+pandas-profiling
+unittest
