@@ -7,4 +7,4 @@ install:
 - pip3 insall -r requirements.txt
 
 scripts:
-- python3 -m unittest discover ehtereum_fraud_detection/tests "model_test.py"
+- python3 -m unittest discover /tests "model_test.py"
