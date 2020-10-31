@@ -131,6 +131,9 @@ class DataCollector:
                 continue
 
         pbar.close()
+        if name == 'inference':
+            df = pd.read_csv('inference.csv')
+            return df
 
 
     def account_balance(self,address):
