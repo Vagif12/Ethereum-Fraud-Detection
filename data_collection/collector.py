@@ -132,7 +132,7 @@ class DataCollector:
 
         pbar.close()
         if name == 'inference':
-            df = pd.read_csv('inference.csv')
+            df = pd.read_csv('inference.csv',header=None)
             return df
 
 
