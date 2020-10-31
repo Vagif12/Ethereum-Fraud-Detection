@@ -3,6 +3,9 @@ sys.path.append("..")
 
 import unittest
 import pandas as pd
+import logging
+
+logging.basicConfig(format='%(names)s - %(levelname)s - %(message)s')
 
 from data_collection.collector import DataCollector
 
@@ -12,5 +15,5 @@ class TestQueries(unittest.TestCase):
         collector = DataCollector(inference=True)
         df = collector.main(inference_addresses=addresses)
 
-        print(len(df))
+        logging.debug(len(df))
         assert len(df) == 2

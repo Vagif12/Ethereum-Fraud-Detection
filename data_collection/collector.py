@@ -7,6 +7,9 @@ from base64 import encode
 import requests,string,time
 from statistics import mean
 from datetime import datetime
+import logging
+
+logging.basicConfig(format = '%(name)s - %(levelname)s - %(message)s')
 
 class DataCollector:
     """
@@ -26,13 +29,13 @@ class DataCollector:
         '''
         This method gets the clean account addresses 
         '''
-        print("Starting retrieval of clean accounts from Github")
+        logging.debug("Starting retrieval of clean accounts from Github")
 
         # Read CSV file on the Github repo
         clean_account_adresses = pd.read_csv('https://raw.githubusercontent.com/Vagif12/Ethereum-Fraud-Detection/master/datasets/clean_adresses.csv')
-        # Print the number of unique and clean addresses
-        print('Number of clean account adressess: ' + str(len(clean_account_adresses['Address'])))
-        print('Number of unique clean account adressess: ' + str(len(np.unique(clean_account_adresses['Address']))))
+        # logging.debug the number of unique and clean addresses
+        logging.debug('Number of clean account adressess: ' + str(len(clean_account_adresses['Address'])))
+        logging.debug('Number of unique clean account adressess: ' + str(len(np.unique(clean_account_adresses['Address']))))
 
         # Return a numpy array of addresses obtained
         return np.array(clean_account_adresses['Address'])
@@ -51,7 +54,7 @@ class DataCollector:
             no_of_scams = len(response['result'])
             scam_id, scam_name, scam_status, scam_category, addresses = ([] for i in range(5))
 
-            print("Starting retrieval of scams from EtherscamDB")
+            logging.debug("Starting retrieval of scams from EtherscamDB")
 
             for scam in range(no_of_scams):
                 if 'addresses' in response['result'][scam]:
@@ -69,8 +72,8 @@ class DataCollector:
                         else:
                             scam_category.append('Null')
             # Basics Stats on the dataset
-            print("file number of illicit accounts: ", len(addresses))
-            print("Unique illicit accounts: ", len(np.unique(addresses)))
+            logging.debug("file number of illicit accounts: ", len(addresses))
+            logging.debug("Unique illicit accounts: ", len(np.unique(addresses)))
 
             # JSON File
             address_darklist = requests.get('https://raw.githubusercontent.com/MyEtherWallet/ethereum-lists/master/src/addresses/addresses-darklist.json').json()
@@ -79,14 +82,14 @@ class DataCollector:
             for item in address_darklist:
                 addresses_2.append(item['address'])
 
-            print("Number of illegal addresses: ", len(address_darklist))
-            print("Number of unique illegal addresses in JSON file: ", len(np.unique(addresses_2)))
+            logging.debug("Number of illegal addresses: ", len(address_darklist))
+            logging.debug("Number of unique illegal addresses in JSON file: ", len(np.unique(addresses_2)))
 
             all_addresses = []
             all_addresses = np.concatenate((addresses, addresses_2), axis=None)
             all_addresses = np.unique(np.char.lower(all_addresses))
 
-            print("Final number of unique Addresses: ", len(np.unique(all_addresses)))
+            logging.debug("Final number of unique Addresses: ", len(np.unique(all_addresses)))
             return all_addresses
         
     def main(self,clean_addresses=True,name='clean_addresses',inference_addresses=[]):
@@ -124,13 +127,14 @@ class DataCollector:
                 with open(r'./{}.csv'.format(name), 'a', newline="") as f:
                     writer = csv.writer(f, delimiter=',')
                     writer.writerow(all_tnxs)
-                    print(all_tnxs)
+                    logging.debug(all_tnxs)
                 index += 1
                 pbar.update(1)
             except:
                 continue
 
         pbar.close()
+
         if name == 'inference':
             df = pd.read_csv('inference.csv',header=None)
             return df
