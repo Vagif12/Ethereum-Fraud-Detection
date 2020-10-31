@@ -8,3 +8,4 @@ install:
 
 scripts:
 - python3 -m unittest discover tests/ "model_test.py"
+- python3 -m unittest discover tests/ "data_collection_test.py"
