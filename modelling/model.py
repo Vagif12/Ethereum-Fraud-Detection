@@ -56,3 +56,4 @@ class FraudDetector:
         predictions = self.xgb.predict(self.X_test)
         print(cross_val_score(self.xgb,self.X_train_combined,self.y_train_combined,cv=self.skf,scoring='f1').mean())
         print(f1_score(self.y_test,predictions))
+        return f1_score(self.y_test,predictions)
